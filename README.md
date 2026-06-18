@@ -47,7 +47,9 @@ Evaluated on the HaGRID test set (1,700 samples · 34 classes · 500 img/class s
 
 Sample predictions on the test set — **green** = correct, **red** = wrong.
 
-![Inference Demo](./hagrid_outputs/plots/inference_demo.png)
+![Inference Demo](./assets/inference_demo.png)
+
+> 🎥 **Live demo video:** [Watch on Google Drive](https://drive.google.com/file/d/1bIVQUfHczS4yPjBE-cWd-ZsF_JrU0-K7/view?usp=sharing)
 
 ---
 
@@ -217,9 +219,11 @@ Hagrid-Gesture-Recognition/
 │   ├── efficientnet_b0_hagrid_best.pth
 │   └── efficientnet_b0_hagrid_final.pth
 │
-└── hagrid_outputs/                  # Created during EDA & training
-    ├── plots/
-    └── metrics/
+├── assets/                          # Screenshots, plots, demo images
+│   ├── logo.jpg
+│   ├── inference_demo.png
+│   └── ...
+└── hagrid_outputs/                  # Created during training (gitignored)
 ```
 
 ---
