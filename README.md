@@ -27,6 +27,30 @@ The dataset is served through HuggingFace — no Kaggle account or SberCloud acc
 
 ---
 
+## Results
+
+Evaluated on the HaGRID test set (1,700 samples · 34 classes · 500 img/class subset):
+
+| Metric | Score |
+|---|---|
+| Val Accuracy (best epoch) | 80.7% (epoch 58 / 65) |
+| Test Accuracy | 79.0% |
+| Macro F1 | 0.790 |
+| Weighted F1 | 0.790 |
+
+**Easiest gestures:** `holy` (F1 1.00) · `thumb_index2` (0.986) · `xsign` (0.979) · `timeout` (0.970)  
+**Hardest gestures:** `three` (0.529) · `ok` (0.536) · `rock` (0.598) — visually similar hand shapes cause most confusion
+
+> Most misclassifications occur between gestures with overlapping hand shapes (e.g. `three` / `three2` / `three3`, `ok` / `rock`), which is expected given the 500 img/class subset size. Training on the full 2,000 img/class split would likely close this gap.
+
+### Inference Demo
+
+Sample predictions on the test set — **green** = correct, **red** = wrong.
+
+![Inference Demo](./hagrid_outputs/plots/inference_demo.png)
+
+---
+
 ## Prerequisites
 
 - Python 3.12.3
@@ -127,21 +151,13 @@ hagrid_outputs/
         training_curves.png
         confusion_matrix.png
         per_class_f1.png
+        inference_demo.png
     metrics/
         training_log.json
-        classification_report.json
+        classification_report.txt
+        eval_metrics.json
+        per_class_f1.json
 ```
-
-## Results
-
-### Inference Demo
-
-Sample predictions on the test set — **green** = correct, **red** = wrong.
-
-![Inference Demo](./hagrid_outputs/plots/inference_demo.png)
-
-> Most misclassifications occur on visually similar gestures (e.g. `palm` → `ok`, `two_up` → `fist`),
-> which is expected given their overlapping hand shapes.
 
 ---
 
@@ -195,8 +211,6 @@ Hagrid-Gesture-Recognition/
 ├── TRAINING_HaGRID.ipynb            # Model training notebook
 ├── demo_hagrid.py                   # Real-time webcam demo
 ├── requirements.txt
-├── about.txt
-├── dataset.txt
 ├── README.md
 │
 ├── hagrid_checkpoints/              # Created during training
